@@ -11,7 +11,7 @@ export default function MainContent() {
     const [isVideoPanel, setIsVideoPanel] = useState(false);
     const router = useRouter();
 
-    const handleClickProceed = () => {
+    const handleClickProceed = async () => {
         let lines = script.split(".");
         let linesNew = [];
         lines = lines.map(item=>{
@@ -23,10 +23,43 @@ export default function MainContent() {
             setScriptError(true);
             return;
         }
-        setScriptList(linesNew);
-        setIsVideoPanel(true);
-        setProjectName(linesNew[0].substring(0, 15));
-        console.log(linesNew);
+        const scriptItems = linesNew.map(item=>{
+            const scriptItem = {
+                paragraphId: crypto.randomUUID(),
+                content: item
+            };
+            return scriptItem;
+        })
+
+        /*--------- Get keywords from script ---------*/
+        var myHeaders = new Headers();
+        myHeaders.append("apikey", "1PJC3EuGd5EJvllkWZJTzTZEIggR4QPS");
+
+        Promise.all(scriptItems.map(async item=>{
+            var requestOptions = {
+                method: 'POST',
+                redirect: 'follow',
+                headers: myHeaders,
+                body: item.content
+            };
+            try {
+                const res = await fetch("https://api.apilayer.com/keyword", requestOptions);
+                const data = await res.json();
+                const keywords = data.result.filter(key=>!key.text.includes(' '));
+                const itemNew = {...item, keywords};
+                return itemNew;
+            } catch (err) {
+                console.error(err);
+            }        
+        })).
+        then(newScriptItems=>{
+            // setScriptList(scriptItems);
+            // // setIsVideoPanel(true);
+            // setProjectName(scriptItems[0].content.substring(0, 15));
+        })
+        .catch(err => {
+            console.error(err);
+        });
     }
 
     const handleChangeScript = e => {
