@@ -52,7 +52,7 @@ export default function MainContent() {
                                         <FaPenSquare className="w-7 h-7"/>
                                     </div>
                                     <p className="text-sm text-center p-4">Start typinig or Copy paste your script</p>
-                                    <button type="button" onClick={handleClickProceed} class="w-fit self-center px-5 py-1.5 text-sm text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Proceed</button>
+                                    <button type="button" onClick={handleClickProceed} className="w-fit self-center px-5 py-1.5 text-sm text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Proceed</button>
                                 </div>
                                 <div className="flex flex-col gap-1 self-center">
                                     <p className="text-xs font-bold text-gray-700">Recommended for:</p>
@@ -74,7 +74,7 @@ export default function MainContent() {
                                         <FaVideo className="w-7 h-7"/>
                                     </div>
                                     <p className="text-sm text-center p-4">Input video from various sources</p>
-                                    <button type="button" onClick={handleClickProceed} class="w-fit self-center px-5 py-1.5 text-sm text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Proceed</button>
+                                    <button type="button" onClick={handleClickProceed} className="w-fit self-center px-5 py-1.5 text-sm text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Proceed</button>
                                 </div>
                                 <div className="flex flex-col gap-1 self-center">
                                     <p className="text-xs font-bold text-gray-700">Recommended for:</p>
@@ -99,7 +99,7 @@ export default function MainContent() {
                                         <FaPhotoVideo className="w-7 h-7"/>
                                     </div>
                                     <p className="text-sm text-center p-4">Drag and drop file or browse computer</p>
-                                    <button type="button" onClick={handleClickProceed} class="w-fit self-center px-5 py-1.5 text-sm text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Proceed</button>
+                                    <button type="button" onClick={handleClickProceed} className="w-fit self-center px-5 py-1.5 text-sm text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Proceed</button>
                                 </div>
                                 <div className="flex flex-col gap-1 self-center">
                                     <p className="text-xs font-bold text-gray-700">Recommended for:</p>

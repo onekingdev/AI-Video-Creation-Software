@@ -9,7 +9,7 @@ export default function Header() {
                         <img src="./logo-octopus-with-pictory.png" className="h-8 mr-3" alt="Flowbite Logo" />
                     </a>
                     <div className="items-center justify-between hidden w-full gap-5 md:flex md:w-auto md:order-1" id="mobile-menu-2">
-                        <button type="button" class="flex flex-row items-center gap-2 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-md px-3 py-1.5 text-center">
+                        <button type="button" className="flex flex-row items-center gap-2 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-md px-3 py-1.5 text-center">
                             <FaUsers className="text-white"/>Create a team
                         </button>
                         <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
@@ -24,7 +24,7 @@ export default function Header() {
                             </li>
                         </ul>
                         <FaBell className="text-blue-500"/>
-                        <button type="button" class="text-blue-500 hover:text-white border border-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-3 py-1.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Upgrade</button>
+                        <button type="button" className="text-blue-500 hover:text-white border border-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-3 py-1.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Upgrade</button>
                         <div className="flex items-center md:order-2">
                             <button type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                                 <span className="sr-only">Open user menu</span>

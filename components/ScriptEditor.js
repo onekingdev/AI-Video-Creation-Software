@@ -53,6 +53,7 @@ export default function MainContent() {
             }        
         })).
         then(newScriptItems=>{
+            console.log(newScriptItems);
             // setScriptList(scriptItems);
             // // setIsVideoPanel(true);
             // setProjectName(scriptItems[0].content.substring(0, 15));
@@ -99,14 +100,14 @@ export default function MainContent() {
                         <h1 className="text-2xl">Script editor</h1>
                         <div className="flex flex-row justify-between items-center">
                             {/* <span className="flex flex-row items-center gap-1 mr-3">Saved<FaRegCheckCircle className="text-green-500"/></span> */}
-                            <button type="button" onClick={handleClickClose} class="text-blue-700 hover:text-blue-800 border border-blue-700 hover:bg-blue-100 font-medium rounded-l-lg text-sm px-4 py-1.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Cancel</button>
-                            <button type="button" onClick={handleClickProceed} class="text-white bg-gradient-to-r from-blue-500 border border-l-0 border-blue-700 via-blue-600 to-blue-700 hover:bg-gradient-to-br dark:focus:ring-blue-800 font-medium rounded-r-lg text-sm px-4 py-1.5 text-center">Proceed</button>
+                            <button type="button" onClick={handleClickClose} className="text-blue-700 hover:text-blue-800 border border-blue-700 hover:bg-blue-100 font-medium rounded-l-lg text-sm px-4 py-1.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Cancel</button>
+                            <button type="button" onClick={handleClickProceed} className="text-white bg-gradient-to-r from-blue-500 border border-l-0 border-blue-700 via-blue-600 to-blue-700 hover:bg-gradient-to-br dark:focus:ring-blue-800 font-medium rounded-r-lg text-sm px-4 py-1.5 text-center">Proceed</button>
                         </div>
                     </div>
                     <div className="bg-white rounded-xl flex-1 p-5 flex flex-col">
-                        <input type="text" id="base-input" placeholder="Enter your video name" class="bg-white text-gray-900 text-sm rounded-lg focus:ring-white focus:ring-0 focus:outline-none focus:border-white block w-full py-2.5" />
+                        <input type="text" id="base-input" placeholder="Enter your video name" className="bg-white text-gray-900 text-sm rounded-lg focus:ring-white focus:ring-0 focus:outline-none focus:border-white block w-full py-2.5" />
                         <hr />
-                        <textarea id="message" value={script} onChange={handleChangeScript} class="resize-none flex-1 block py-6 w-full text-sm text-gray-800 bg-white rounded-lg border border-white focus:ring-white focus:border-white focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Start typing here..."></textarea>
+                        <textarea id="message" value={script} onChange={handleChangeScript} className="resize-none flex-1 block py-6 w-full text-sm text-gray-800 bg-white rounded-lg border border-white focus:ring-white focus:border-white focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Start typing here..."></textarea>
                         {scriptError && (
                             <span className="text-red-500">
                                 Script is required
