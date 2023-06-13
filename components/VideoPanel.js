@@ -33,7 +33,7 @@ export default function VideoPanel(props) {
                             scriptList.map((item, index)=>(
                                 <div key={`videoscene_${index}`} onClick={()=>setSelectedScene(index)} className={`${selectedScene === index ? 'bg-blue-100' : 'bg-white'} cursor-pointer shadow rounded-md p-2`}>
                                     <span className="text-gray-400 text-xs">Scene&nbsp;{index+1}</span>
-                                    <p className="text-md text-gray-800 py-1" dangerouslySetInnerHTML={{__html: item.content}}></p>
+                                    <p className="text-sm text-gray-800 py-1" dangerouslySetInnerHTML={{__html: item.content}}></p>
                                 </div>
                             ))
                         }
