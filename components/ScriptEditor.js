@@ -31,6 +31,8 @@ export default function MainContent() {
             return scriptItem;
         })
 
+        setProjectName(scriptItems[0].content.substring(0, 15));
+
         /*--------- Get keywords from script ---------*/
         var myHeaders = new Headers();
         myHeaders.append("apikey", "1PJC3EuGd5EJvllkWZJTzTZEIggR4QPS");
@@ -52,11 +54,18 @@ export default function MainContent() {
                 console.error(err);
             }        
         })).
-        then(newScriptItems=>{
-            console.log(newScriptItems);
-            // setScriptList(scriptItems);
-            // // setIsVideoPanel(true);
-            // setProjectName(scriptItems[0].content.substring(0, 15));
+        then(result=>{
+            const scriptItems = result.map(item=>{
+                const contentWithBoldKeywords = item.keywords.reduce((acc, keyword) => {
+                    const regex = new RegExp(keyword.text, 'gi');
+                    return acc.replace(regex, `<strong class="text-blue-500">${keyword.text}</strong>`);
+                }, item.content);
+                const itemNew = {...item, content: contentWithBoldKeywords};
+                return itemNew;
+            })
+            setScriptList(scriptItems);
+            console.log(scriptItems);
+            setIsVideoPanel(true);
         })
         .catch(err => {
             console.error(err);
@@ -89,7 +98,7 @@ export default function MainContent() {
                 <>
                     <VideoPanel 
                         projectName={projectName} 
-                        setProjectName={setProjectName} 
+                        setProjectName={setProjectName}
                         scriptList={scriptList}
                         setIsVideoPanel={setIsVideoPanel}
                     />

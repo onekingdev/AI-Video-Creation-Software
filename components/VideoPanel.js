@@ -16,7 +16,7 @@ export default function VideoPanel(props) {
         <div className="px-6 pt-[70px] mx-auto flex flex-col h-screen">
             <div className="flex flex-row items-center justify-between bg-white -mx-6 px-10 border-y border-gray-300 p-1">
                 <div>
-                    <label for="project_name" className="block text-sm font-medium text-gray-500 dark:text-white">Project Name</label>
+                    <label htmlFor="project_name" className="block text-sm font-medium text-gray-500 dark:text-white">Project Name</label>
                     <input type="text" id="project_name" value={projectName} onChange={e=>setProjectName(e.target.value)} className="block font-bold bg-white text-gray-800 text-lg rounded-lg focus:ring-white focus:ring-0 focus:outline-none focus:border-white block w-full pt-2 pb-1" />
                 </div>
                 <div className="flex flex-row gap-2 h-fit">
@@ -33,7 +33,7 @@ export default function VideoPanel(props) {
                             scriptList.map((item, index)=>(
                                 <div key={`videoscene_${index}`} onClick={()=>setSelectedScene(index)} className={`${selectedScene === index ? 'bg-blue-100' : 'bg-white'} cursor-pointer shadow rounded-md p-2`}>
                                     <span className="text-gray-400 text-xs">Scene&nbsp;{index+1}</span>
-                                    <p className="text-md text-gray-800 py-1">{item}</p>
+                                    <p className="text-md text-gray-800 py-1" dangerouslySetInnerHTML={{__html: item.content}}></p>
                                 </div>
                             ))
                         }
