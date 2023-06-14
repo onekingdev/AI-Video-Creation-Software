@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function VideoPanel(props) {
     const {projectName, setProjectName, setIsVideoPanel, scriptList} = props;
-    const [selectedScene, setSelectedScene] = useState();
+    const [selectedScene, setSelectedScene] = useState(scriptList[0]);
 
     const handleClickPrevious = () => {
 
@@ -31,7 +31,7 @@ export default function VideoPanel(props) {
                     <div className="flex flex-col gap-4">
                         {
                             scriptList.map((item, index)=>(
-                                <div key={`videoscene_${index}`} onClick={()=>setSelectedScene(index)} className={`${selectedScene === index ? 'bg-blue-100' : 'bg-white'} cursor-pointer shadow rounded-md p-2`}>
+                                <div key={`videoscene_${index}`} onClick={()=>setSelectedScene(item)} className={`${selectedScene.paragraphId === item.paragraphId ? 'bg-blue-100' : 'bg-white'} cursor-pointer shadow rounded-md p-2`}>
                                     <span className="text-gray-400 text-xs">Scene&nbsp;{index+1}</span>
                                     <p className="text-sm text-gray-800 py-1" dangerouslySetInnerHTML={{__html: item.content}}></p>
                                 </div>
@@ -39,8 +39,29 @@ export default function VideoPanel(props) {
                         }
                     </div>
                 </div>
-                <div className="w-7/12 h-full bg-white"></div>
+                <div className="w-7/12 h-full bg-white">
+                    <VideoComponent src={selectedScene.storyblocks[0].preview_urls._720p}/>
+                    <div className="flex flex-row gap-4 px-10">
+                        {
+                            scriptList.map((item, index)=>(
+                                <div key={`videoitemscene_${index}`} onClick={()=>setSelectedScene(item)} className={`${selectedScene.paragraphId === item.paragraphId ? 'bg-blue-100' : 'bg-black'} rounded-md cursor-pointer`}>
+                                    <img className={`${selectedScene.paragraphId === item.paragraphId ? '':'opacity-[0.3]'} rounded-md w-36`} src={item.storyblocks[0].thumbnail_url} alt={item.storyblocks[0].title} /> 
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
             </div>
+        </div>
+    )
+}
+
+function VideoComponent({src}) {
+    return (
+        <div className="p-10 w-full">
+            <video className="rounded-md w-full" key={src} autoPlay controls>
+                <source src={src} type="video/mp4" />
+            </video>
         </div>
     )
 }

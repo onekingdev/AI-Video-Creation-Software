@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import VideoPanel from "./VideoPanel";
 import { FaRegCheckCircle, FaCheck, FaVideo, FaPhotoVideo, FaPenSquare } from "react-icons/fa";
+import { scriptListData } from "./data";
 
 export default function MainContent() {
     const [script, setScript] = useState('');
@@ -33,6 +34,16 @@ export default function MainContent() {
 
         setProjectName(scriptItems[0].content.substring(0, 15));
 
+        // const keywords= [
+        //     {text: 'fork', score: 0.687045},
+        //     {text: 'vision', score: 0.592004},
+        //     {text: 'karate', score: 0.577212},
+        //     {text: 'God', score: 0.229278}
+        // ];
+
+        // const data = await getVideoURLs(keywords);
+        // console.log(data)
+
         /*--------- Get keywords from script ---------*/
         var myHeaders = new Headers();
         myHeaders.append("apikey", "1PJC3EuGd5EJvllkWZJTzTZEIggR4QPS");
@@ -48,7 +59,9 @@ export default function MainContent() {
                 const res = await fetch("https://api.apilayer.com/keyword", requestOptions);
                 const data = await res.json();
                 const keywords = data.result.filter(key=>!key.text.includes(' '));
-                const itemNew = {...item, keywords};
+                // const keywords = data.result;
+                const videoURLs = await getVideoURLs(keywords);
+                const itemNew = {...item, keywords, storyblocks:videoURLs};
                 return itemNew;
             } catch (err) {
                 console.error(err);
@@ -64,12 +77,35 @@ export default function MainContent() {
                 return itemNew;
             })
             setScriptList(scriptItems);
-            console.log(scriptItems);
+            console.log(scriptItems)
             setIsVideoPanel(true);
         })
         .catch(err => {
             console.error(err);
         });
+
+        /*--------- Get video from script keywords ---------*/
+        // setIsVideoPanel(true);
+        // setScriptList(scriptListData);
+    }
+
+    const getVideoURLs = async (keywords) => {
+        const keyword_str = keywords.map(keyword => keyword.text).join(',');
+        // const keyword_str = keywords[0];
+        try {
+            const res = await fetch(`/api/storyblocks?keywords=${keyword_str}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await res.json();
+            if(res.ok) {
+                return data.data;
+            }
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     const handleChangeScript = e => {
