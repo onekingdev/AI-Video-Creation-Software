@@ -34,59 +34,59 @@ export default function MainContent() {
 
         setProjectName(scriptItems[0].content.substring(0, 15));
 
-        // const keywords= [
-        //     {text: 'fork', score: 0.687045},
-        //     {text: 'vision', score: 0.592004},
-        //     {text: 'karate', score: 0.577212},
-        //     {text: 'God', score: 0.229278}
-        // ];
+        const keywords= [
+            {text: 'fork', score: 0.687045},
+            {text: 'vision', score: 0.592004},
+            {text: 'karate', score: 0.577212},
+            {text: 'God', score: 0.229278}
+        ];
 
-        // const data = await getVideoURLs(keywords);
-        // console.log(data)
+        const data = await getVideoURLs(keywords);
+        console.log(data)
 
         /*--------- Get keywords from script ---------*/
-        var myHeaders = new Headers();
-        myHeaders.append("apikey", "1PJC3EuGd5EJvllkWZJTzTZEIggR4QPS");
+        // var myHeaders = new Headers();
+        // myHeaders.append("apikey", "1PJC3EuGd5EJvllkWZJTzTZEIggR4QPS");
 
-        Promise.all(scriptItems.map(async item=>{
-            var requestOptions = {
-                method: 'POST',
-                redirect: 'follow',
-                headers: myHeaders,
-                body: item.content
-            };
-            try {
-                const res = await fetch("https://api.apilayer.com/keyword", requestOptions);
-                const data = await res.json();
-                const keywords = data.result.filter(key=>!key.text.includes(' '));
-                // const keywords = data.result;
-                const videoURLs = await getVideoURLs(keywords);
-                const itemNew = {...item, keywords, storyblocks:videoURLs};
-                return itemNew;
-            } catch (err) {
-                console.error(err);
-            }        
-        })).
-        then(result=>{
-            const scriptItems = result.map(item=>{
-                const contentWithBoldKeywords = item.keywords.reduce((acc, keyword) => {
-                    const regex = new RegExp(keyword.text, 'gi');
-                    return acc.replace(regex, `<strong class="text-blue-500">${keyword.text}</strong>`);
-                }, item.content);
-                const itemNew = {...item, content: contentWithBoldKeywords};
-                return itemNew;
-            })
-            setScriptList(scriptItems);
-            console.log(scriptItems)
-            setIsVideoPanel(true);
-        })
-        .catch(err => {
-            console.error(err);
-        });
+        // Promise.all(scriptItems.map(async item=>{
+        //     var requestOptions = {
+        //         method: 'POST',
+        //         redirect: 'follow',
+        //         headers: myHeaders,
+        //         body: item.content
+        //     };
+        //     try {
+        //         const res = await fetch("https://api.apilayer.com/keyword", requestOptions);
+        //         const data = await res.json();
+        //         const keywords = data.result.filter(key=>!key.text.includes(' '));
+        //         // const keywords = data.result;
+        //         const videoURLs = await getVideoURLs(keywords);
+        //         const itemNew = {...item, keywords, storyblocks:videoURLs};
+        //         return itemNew;
+        //     } catch (err) {
+        //         console.error(err);
+        //     }        
+        // })).
+        // then(result=>{
+        //     const scriptItems = result.map(item=>{
+        //         const contentWithBoldKeywords = item.keywords.reduce((acc, keyword) => {
+        //             const regex = new RegExp(keyword.text, 'gi');
+        //             return acc.replace(regex, `<strong class="text-blue-500">${keyword.text}</strong>`);
+        //         }, item.content);
+        //         const itemNew = {...item, content: contentWithBoldKeywords};
+        //         return itemNew;
+        //     })
+        //     setScriptList(scriptItems);
+        //     console.log(scriptItems)
+        //     setIsVideoPanel(true);
+        // })
+        // .catch(err => {
+        //     console.error(err);
+        // });
 
         /*--------- Get video from script keywords ---------*/
-        // setIsVideoPanel(true);
-        // setScriptList(scriptListData);
+        setIsVideoPanel(true);
+        setScriptList(scriptListData);
     }
 
     const getVideoURLs = async (keywords) => {
